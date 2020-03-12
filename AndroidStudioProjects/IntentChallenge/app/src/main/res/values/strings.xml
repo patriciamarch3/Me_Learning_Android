@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Intent Challenge</string>
+    <string name="app_title">Contacts App</string>
+    <string name="create">Create New Contact</string>
+    <string name="map">Location</string>
+    <string name="web">Website</string>
+    <string name="call">Call</string>
+    <string name="attitude">Attitude</string>
+    <string name="satisfied">Satisfied</string>
+    <string name="neutral">Neutral</string>
+    <string name="unsatified">Unsatisfied</string>
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Change the Theme">
+
+        <ListPreference
+            android:defaultValue="red"
+            android:entries="@array/themeColor"
+            android:entryValues="@array/themeColorValue"
+            android:key="themeColor"
+            android:summary="Choose a theme color to be used through the application"
+            android:title="Choose a Theme Color" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Show / Hide Button">
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="showButton"
+            android:title="Show Button" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
