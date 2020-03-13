@@ -1,5 +1,6 @@
 package com.example.challengeroomapi.room;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -27,4 +28,7 @@ public interface BookDAO {
 
     @Query("SELECT * FROM Book ORDER BY title, author")
     List<Book> getAllBooks();
+
+    @Query("SELECT * FROM Book ORDER BY title, author")
+    LiveData<List<Book>> getAllBooksLive();
 }

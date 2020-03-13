@@ -21,19 +21,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
     private ItemClicked context;
     private List<Book> bookList;
 
-    public BookAdapter(Context context, List<Book> bookList) {
+    BookAdapter(Context context) {
         this.context = (ItemClicked) context;
-        this.bookList = bookList;
     }
 
     public interface ItemClicked {
         void onClickItem(long ISBN);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvAuthor;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        private final TextView tvTitle, tvAuthor;
 
-        public ViewHolder(@NonNull final View itemView) {
+        private ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.tvTitle);
@@ -57,10 +56,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.ViewHolder holder, int position) {
-        Book book = bookList.get(position);
-        holder.itemView.setTag(book);
-        holder.tvTitle.setText(book.getTitle());
-        holder.tvAuthor.setText(book.getAuthor());
+        if (bookList != null) {
+            Book book = bookList.get(position);
+            holder.itemView.setTag(book);
+            holder.tvTitle.setText(book.getTitle());
+            holder.tvAuthor.setText(book.getAuthor());
+        } else {
+            holder.tvTitle.setText("No book");
+            holder.tvAuthor.setText("No book");
+        }
     }
 
     @Override
@@ -70,5 +74,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         } else {
             return bookList.size();
         }
+    }
+
+    void setBooks(List<Book> bookList) {
+        this.bookList = bookList;
+        notifyDataSetChanged();
     }
 }

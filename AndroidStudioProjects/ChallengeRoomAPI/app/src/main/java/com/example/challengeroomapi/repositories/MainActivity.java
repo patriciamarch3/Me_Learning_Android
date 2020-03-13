@@ -2,17 +2,17 @@ package com.example.challengeroomapi.repositories;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.challengeroomapi.R;
@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
     EditText etISBN, etTitle, etAuthor;
     Button btnCreate;
     RecyclerView recyclerView;
-    RecyclerView.Adapter myAdapter;
-    RecyclerView.LayoutManager layoutManager;
+    BooksViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +43,18 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
 
         recyclerView = findViewById(R.id.list);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        updateRecyclerView();
+        final BookAdapter myAdapter = new BookAdapter(this);
+        recyclerView.setAdapter(myAdapter);
+
+        viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
+        viewModel.getBooks().observe(this, new Observer<List<Book>>() {
+            @Override
+            public void onChanged(List<Book> bookList) {
+                myAdapter.setBooks(bookList);
+            }
+        });
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +70,8 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
                     new InsertBookAsync(MainActivity.this.getApplicationContext(), new AsyncTaskCallback<Book>() {
                         @Override
                         public void handleResponse(Book response) {
-                            updateRecyclerView();
                             Toast.makeText(MainActivity.this,
-                                    response.getTitle() + " by " + response.getAuthor() + "added successfully!",
+                                    response.getTitle() + " by " + response.getAuthor() + " added successfully!",
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -77,27 +83,6 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
                 }
             }
         });
-    }
-
-    private void updateRecyclerView() {
-        new ReadAllBooksAsync(this.getApplicationContext(), new AsyncTaskCallback<List<Book>>() {
-            @Override
-            public void handleResponse(List<Book> response) {
-                if (response.size() == 0) {
-                    recyclerView.setVisibility(View.GONE);
-                } else {
-                    recyclerView.setVisibility(View.VISIBLE);
-                }
-                books = response;
-                myAdapter = new BookAdapter(MainActivity.this, books);
-                recyclerView.setAdapter(myAdapter);
-            }
-
-            @Override
-            public void handleFault(Exception e) {
-                Toast.makeText(MainActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }).execute();
     }
 
     @Override
@@ -115,9 +100,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == BOOK_DETAIL) {
-            if (resultCode == RESULT_OK) {
-                updateRecyclerView();
-            } else {
+            if (resultCode != RESULT_OK) {
                 Toast.makeText(MainActivity.this, "Error occurs in the activity!", Toast.LENGTH_SHORT).show();
             }
         }
