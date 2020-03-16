@@ -8,11 +8,6 @@
     android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="250dp" />
-
     <EditText
         android:id="@+id/etISBN"
         android:layout_width="match_parent"
@@ -60,5 +55,12 @@
         android:text="Create"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="30dp" />
 
 </LinearLayout>

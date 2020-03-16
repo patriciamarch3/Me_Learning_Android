@@ -2,6 +2,7 @@ package com.example.challengeroomapi.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,7 +49,17 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
         recyclerView.setAdapter(myAdapter);
 
         viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
-        viewModel.getBooks().observe(this, myAdapter::setBooks);
+        viewModel.getBooks().observe(this, new Observer<List<Book>>() {
+            @Override
+            public void onChanged(List<Book> bookList) {
+                myAdapter.setBooks(bookList);
+                if (bookList.size() == 0) {
+                    recyclerView.setVisibility(View.GONE);
+                } else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         btnCreate.setOnClickListener((View v) -> {
                 String ISBNString = etISBN.getText().toString();
