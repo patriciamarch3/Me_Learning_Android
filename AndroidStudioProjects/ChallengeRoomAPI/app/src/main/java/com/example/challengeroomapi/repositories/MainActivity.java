@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
                     new InsertBookAsync(MainActivity.this.getApplicationContext(), new AsyncTaskCallback<Book>() {
                         @Override
                         public void handleResponse(Book response) {
+                            etISBN.getText().clear();
+                            etTitle.getText().clear();
+                            etAuthor.getText().clear();
                             Toast.makeText(MainActivity.this,
                                     response.getTitle() + " by " + response.getAuthor() + " added successfully!",
                                     Toast.LENGTH_SHORT).show();
@@ -101,7 +103,11 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
 
         if (requestCode == BOOK_DETAIL) {
             if (resultCode != RESULT_OK) {
-                Toast.makeText(MainActivity.this, "Error occurs in the activity!", Toast.LENGTH_SHORT).show();
+                if (data != null) {
+                    Toast.makeText(MainActivity.this, data.getStringExtra("error"), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(MainActivity.this, data.getStringExtra("success"), Toast.LENGTH_SHORT).show();
             }
         }
     }

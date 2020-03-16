@@ -1,7 +1,10 @@
 package com.example.challengeroomapi.repositories;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +19,7 @@ public class DetailActivity extends AppCompatActivity {
     Button btnDelete, btnEdit, btnApply;
     long ISBN;
     Book book;
+    BooksViewModel booksViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,20 +37,17 @@ public class DetailActivity extends AppCompatActivity {
         ISBN = getIntent().getLongExtra("isbn", 0);
         etISBN.setText(Long.toString(ISBN));
 
-        new ReadBookByISBNAsync(this.getApplicationContext(), new AsyncTaskCallback<Book>() {
+        booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
+        booksViewModel.getBookByISBN(ISBN).observe(this, new Observer<Book>() {
             @Override
-            public void handleResponse(Book response) {
-                book = response;
-                etTitle.setText(book.getTitle());
-                etAuthor.setText(book.getAuthor());
+            public void onChanged(Book foundBook) {
+                if (foundBook != null) {
+                    book = foundBook;
+                    etTitle.setText(book.getTitle());
+                    etAuthor.setText(book.getAuthor());
+                }
             }
-
-            @Override
-            public void handleFault(Exception e) {
-                Toast.makeText(DetailActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                DetailActivity.this.finish();
-            }
-        }).execute(ISBN);
+        });
 
         etISBN.setEnabled(false);
         etTitle.setEnabled(false);
@@ -58,16 +59,20 @@ public class DetailActivity extends AppCompatActivity {
                 new DeleteBookAsync(DetailActivity.this.getApplicationContext(), new AsyncTaskCallback<Book>() {
                     @Override
                     public void handleResponse(Book response) {
-                        Toast.makeText(DetailActivity.this,
-                                response.getTitle() + " by " + response.getAuthor() + " deleted successfully!",
-                                Toast.LENGTH_SHORT).show();
-                        setResult(RESULT_OK);
+//                        Toast.makeText(DetailActivity.this,
+//                                response.getTitle() + " by " + response.getAuthor() + " deleted successfully!",
+//                                Toast.LENGTH_SHORT).show();
+                        replyIntent.putExtra("success", response.getTitle() + " by " + response.getAuthor() + " deleted successfully!");
+                        setResult(RESULT_OK, replyIntent);
                         DetailActivity.this.finish();
                     }
 
                     @Override
                     public void handleFault(Exception e) {
-                        Toast.makeText(DetailActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(DetailActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        replyIntent.putExtra("error", "Error! " + e.getMessage());
+                        setResult(RESULT_CANCELED, replyIntent);
+                        DetailActivity.this.finish();
                     }
                 }).execute(ISBN);
             }
@@ -95,16 +100,20 @@ public class DetailActivity extends AppCompatActivity {
                     new UpdateBookAsync(DetailActivity.this.getApplicationContext(), new AsyncTaskCallback<Book>() {
                         @Override
                         public void handleResponse(Book response) {
-                            Toast.makeText(DetailActivity.this,
-                                    response.getTitle() + " by " + response.getAuthor() + " updated successfully!",
-                                    Toast.LENGTH_SHORT).show();
-                            setResult(RESULT_OK);
+//                            Toast.makeText(DetailActivity.this,
+//                                    response.getTitle() + " by " + response.getAuthor() + " updated successfully!",
+//                                    Toast.LENGTH_SHORT).show();
+                            replyIntent.putExtra("success", response.getTitle() + " by " + response.getAuthor() + " updated successfully!");
+                            setResult(RESULT_OK, replyIntent);
                             DetailActivity.this.finish();
                         }
 
                         @Override
                         public void handleFault(Exception e) {
-                            Toast.makeText(DetailActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(DetailActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            replyIntent.putExtra("error", "Error! " + e.getMessage());
+                            setResult(RESULT_CANCELED, replyIntent);
+                            DetailActivity.this.finish();
                         }
                     }).execute(book);
                 }

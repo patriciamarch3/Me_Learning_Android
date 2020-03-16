@@ -2,6 +2,7 @@ package com.example.challengeroomapi.room;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -14,6 +15,7 @@ public class Book {
     @ColumnInfo
     private String author;
 
+    @Ignore
     public Book() {
         super();
     }
@@ -24,6 +26,7 @@ public class Book {
         this.author = author;
     }
 
+    @Ignore
     public Book(Book book) {
         ISBN = book.getISBN();
         title = book.getTitle();
