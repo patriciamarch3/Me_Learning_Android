@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.room.Book;
 
+import java.util.Locale;
+
 public class DetailActivity extends AppCompatActivity {
     EditText etISBN, etTitle, etAuthor;
     Button btnDelete, btnEdit, btnApply;
@@ -35,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         btnApply.setVisibility(View.GONE);
 
         ISBN = getIntent().getLongExtra("isbn", 0);
-        etISBN.setText(Long.toString(ISBN));
+        etISBN.setText(String.format(Locale.getDefault(), "%d", ISBN));
 
         booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
         booksViewModel.getBookByISBN(ISBN).observe(this, new Observer<Book>() {
@@ -59,20 +61,12 @@ public class DetailActivity extends AppCompatActivity {
                 new DeleteBookAsync(DetailActivity.this.getApplicationContext(), new AsyncTaskCallback<Book>() {
                     @Override
                     public void handleResponse(Book response) {
-//                        Toast.makeText(DetailActivity.this,
-//                                response.getTitle() + " by " + response.getAuthor() + " deleted successfully!",
-//                                Toast.LENGTH_SHORT).show();
-                        replyIntent.putExtra("success", response.getTitle() + " by " + response.getAuthor() + " deleted successfully!");
-                        setResult(RESULT_OK, replyIntent);
-                        DetailActivity.this.finish();
+                        setReply(RESULT_OK, response.toString() + " deleted");
                     }
 
                     @Override
                     public void handleFault(Exception e) {
-//                        Toast.makeText(DetailActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        replyIntent.putExtra("error", "Error! " + e.getMessage());
-                        setResult(RESULT_CANCELED, replyIntent);
-                        DetailActivity.this.finish();
+                        setReply(RESULT_CANCELED, e.getMessage());
                     }
                 }).execute(ISBN);
             }
@@ -100,24 +94,31 @@ public class DetailActivity extends AppCompatActivity {
                     new UpdateBookAsync(DetailActivity.this.getApplicationContext(), new AsyncTaskCallback<Book>() {
                         @Override
                         public void handleResponse(Book response) {
-//                            Toast.makeText(DetailActivity.this,
-//                                    response.getTitle() + " by " + response.getAuthor() + " updated successfully!",
-//                                    Toast.LENGTH_SHORT).show();
-                            replyIntent.putExtra("success", response.getTitle() + " by " + response.getAuthor() + " updated successfully!");
-                            setResult(RESULT_OK, replyIntent);
-                            DetailActivity.this.finish();
+                            setReply(RESULT_OK, response.toString() + " updated");
                         }
 
                         @Override
                         public void handleFault(Exception e) {
-//                            Toast.makeText(DetailActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            replyIntent.putExtra("error", "Error! " + e.getMessage());
-                            setResult(RESULT_CANCELED, replyIntent);
-                            DetailActivity.this.finish();
+                            setReply(RESULT_CANCELED, e.getMessage());
                         }
                     }).execute(book);
                 }
             }
         });
+    }
+
+    private void setReply(int resultCode, String message) {
+        Intent replyIntent = new Intent();
+        String key, value;
+        if (resultCode == RESULT_OK) {
+            key = "success";
+            value = message + " successfully!";
+        } else {
+            key = "error";
+            value = "Error: " + message;
+        }
+        replyIntent.putExtra(key, value);
+        setResult(resultCode, replyIntent);
+        DetailActivity.this.finish();
     }
 }

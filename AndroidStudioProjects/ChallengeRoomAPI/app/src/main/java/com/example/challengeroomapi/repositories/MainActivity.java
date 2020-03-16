@@ -72,9 +72,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
                             etISBN.getText().clear();
                             etTitle.getText().clear();
                             etAuthor.getText().clear();
-                            Toast.makeText(MainActivity.this,
-                                    response.getTitle() + " by " + response.getAuthor() + " added successfully!",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, response.toString() + " added successfully!", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
