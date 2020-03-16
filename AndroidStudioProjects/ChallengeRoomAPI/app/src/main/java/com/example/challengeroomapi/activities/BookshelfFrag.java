@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +15,6 @@ import android.view.ViewGroup;
 
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.repositories.BooksViewModel;
-import com.example.challengeroomapi.room.Book;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,12 +43,7 @@ public class BookshelfFrag extends Fragment {
 
         BookAdapter adapter = new BookAdapter(getActivity());
         BooksViewModel viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
-        viewModel.getBooks().observe(getActivity(), new Observer<List<Book>>() {
-            @Override
-            public void onChanged(List<Book> bookList) {
-                adapter.setBooks(bookList);
-            }
-        });
+        viewModel.getBooks().observe(getActivity(), adapter::setBooks);
         bookshelf.setAdapter(adapter);
     }
 }

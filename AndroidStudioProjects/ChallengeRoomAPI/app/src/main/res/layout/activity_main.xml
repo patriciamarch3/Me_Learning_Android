@@ -8,60 +8,16 @@
     android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
-    <EditText
-        android:id="@+id/etISBN"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/addBookFrag"
+        android:name="com.example.challengeroomapi.activities.AddBookFrag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="enter ISBN of the book"
-        android:inputType="textPersonName" />
+        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/etTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="enter title of the book"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/etAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="30dp"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="enter author of the book"
-        android:inputType="textPersonName" />
-
-    <Button
-        android:id="@+id/btnCreate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="30dp"
-        android:background="@color/colorPrimary"
-        android:text="Create"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
-
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/bookshelfFrag"
         android:name="com.example.challengeroomapi.activities.BookshelfFrag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        tools:layout="@layout/fragment_bookshelf" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
