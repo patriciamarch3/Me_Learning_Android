@@ -12,9 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.repositories.BooksViewModel;
+import com.example.challengeroomapi.room.Book;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,12 +42,22 @@ public class BookshelfFrag extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        TextView tvNoBook = view.findViewById(R.id.tvNoBook);
+        tvNoBook.setVisibility(View.GONE);
+
         RecyclerView bookshelf = view.findViewById(R.id.bookshelf);
         bookshelf.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
         BookAdapter adapter = new BookAdapter(getActivity());
         BooksViewModel viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
-        viewModel.getBooks().observe(getActivity(), adapter::setBooks);
+        viewModel.getBooks().observe(getActivity(), (List<Book> booklist) -> {
+            adapter.setBooks(booklist);
+            if (booklist.size() == 0) {
+                tvNoBook.setVisibility(View.VISIBLE);
+            } else {
+                tvNoBook.setVisibility(View.GONE);
+            }
+        });
         bookshelf.setAdapter(adapter);
     }
 }
