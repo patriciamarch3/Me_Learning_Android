@@ -24,14 +24,8 @@ public interface BookDAO {
     void delete(long ISBN);
 
     @Query("SELECT * FROM Book WHERE id = :ISBN")
-    Book getBookByISBN(long ISBN);
-
-    @Query("SELECT * FROM Book WHERE id = :ISBN")
-    LiveData<Book> getBookByISBNLive(long ISBN);
+    LiveData<Book> getBookByISBN(long ISBN);
 
     @Query("SELECT * FROM Book ORDER BY title, author")
-    List<Book> getAllBooks();
-
-    @Query("SELECT * FROM Book ORDER BY title, author")
-    LiveData<List<Book>> getAllBooksLive();
+    LiveData<List<Book>> getAllBooks();
 }

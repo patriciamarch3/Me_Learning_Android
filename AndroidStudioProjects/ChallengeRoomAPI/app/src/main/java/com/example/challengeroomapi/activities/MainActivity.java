@@ -1,8 +1,7 @@
-package com.example.challengeroomapi.repositories;
+package com.example.challengeroomapi.activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.challengeroomapi.R;
+import com.example.challengeroomapi.repositories.BooksViewModel;
 import com.example.challengeroomapi.room.Book;
 
 import java.util.ArrayList;
@@ -44,20 +44,13 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        final BookAdapter myAdapter = new BookAdapter(this);
+        BookAdapter myAdapter = new BookAdapter(this);
         recyclerView.setAdapter(myAdapter);
 
         viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
-        viewModel.getBooks().observe(this, new Observer<List<Book>>() {
-            @Override
-            public void onChanged(List<Book> bookList) {
-                myAdapter.setBooks(bookList);
-            }
-        });
+        viewModel.getBooks().observe(this, myAdapter::setBooks);
 
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnCreate.setOnClickListener((View v) -> {
                 String ISBNString = etISBN.getText().toString();
                 String title = etTitle.getText().toString();
                 String author = etAuthor.getText().toString();
@@ -66,22 +59,16 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
                     Toast.makeText(MainActivity.this, "Please fill ALL fields!", Toast.LENGTH_SHORT).show();
                 } else {
                     Book book = new Book(Long.parseLong(ISBNString), title, author);
-                    new InsertBookAsync(MainActivity.this.getApplicationContext(), new AsyncTaskCallback<Book>() {
-                        @Override
-                        public void handleResponse(Book response) {
-                            etISBN.getText().clear();
-                            etTitle.getText().clear();
-                            etAuthor.getText().clear();
-                            Toast.makeText(MainActivity.this, response.toString() + " added successfully!", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void handleFault(Exception e) {
-                            Toast.makeText(MainActivity.this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }).execute(book);
+                    try{
+                        viewModel.insert(book);
+                        etISBN.getText().clear();
+                        etTitle.getText().clear();
+                        etAuthor.getText().clear();
+                        Toast.makeText(MainActivity.this, book.toString() + " ADDED successfully!", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "ERROR! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
         });
     }
 

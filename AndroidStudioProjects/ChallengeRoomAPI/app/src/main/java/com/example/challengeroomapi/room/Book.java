@@ -1,5 +1,6 @@
 package com.example.challengeroomapi.room;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -57,6 +58,7 @@ public class Book {
         this.author = author;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "\"" + title + "\"" + " by " + author;

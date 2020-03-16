@@ -1,4 +1,4 @@
-package com.example.challengeroomapi.repositories;
+package com.example.challengeroomapi.activities;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -35,12 +35,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    context.onClickItem(((Book) itemView.getTag()).getISBN());
-                }
-            });
+            itemView.setOnClickListener((View v) -> context.onClickItem(((Book) itemView.getTag()).getISBN()));
         }
     }
 

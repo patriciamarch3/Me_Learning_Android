@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryLight"
-    tools:context=".repositories.DetailActivity">
+    tools:context=".activities.DetailActivity">
 
     <ImageView
         android:id="@+id/ivBook"

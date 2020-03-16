@@ -6,27 +6,41 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.challengeroomapi.room.AppDatabase;
 import com.example.challengeroomapi.room.Book;
-import com.example.challengeroomapi.room.BookDAO;
 
 import java.util.List;
 
 public class BooksViewModel extends AndroidViewModel {
+    private BookRepository repository;
     private LiveData<List<Book>> books;
-    private BookDAO bookDAO;
 
     public BooksViewModel(@NonNull Application application) {
         super(application);
-        bookDAO = AppDatabase.getInstance(application).getBookDAO();
-        books = bookDAO.getAllBooksLive();
+        repository = new BookRepository(application);
+        books = repository.getBooks();
     }
 
-    LiveData<Book> getBookByISBN(long ISBN) {
-        return bookDAO.getBookByISBNLive(ISBN);
+    public void insert(Book book) throws Exception {
+        repository.insert(book);
     }
 
-    LiveData<List<Book>> getBooks() {
+    public void update(Book book) throws Exception {
+        repository.update(book);
+    }
+
+    public void delete(Book book) throws Exception {
+        repository.delete(book);
+    }
+
+    public void delete(long ISBN) throws Exception {
+        repository.delete(ISBN);
+    }
+
+    public LiveData<Book> getBookByISBN(long ISBN) throws Exception {
+        return repository.getBookByISBN(ISBN);
+    }
+
+    public LiveData<List<Book>> getBooks() {
         return books;
     }
 }
