@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.challengeroomapi.room.AppDatabase;
 import com.example.challengeroomapi.room.Book;
 import com.example.challengeroomapi.room.BookDAO;
-import com.example.challengeroomapi.room.ConnectionToDB;
 
 import java.util.List;
 
@@ -18,15 +18,15 @@ public class BooksViewModel extends AndroidViewModel {
 
     public BooksViewModel(@NonNull Application application) {
         super(application);
-        bookDAO = ConnectionToDB.getInstance(getApplication()).getDatabase().getBookDAO();
+        bookDAO = AppDatabase.getInstance(application).getBookDAO();
         books = bookDAO.getAllBooksLive();
     }
 
-    public LiveData<Book> getBookByISBN(long ISBN) {
+    LiveData<Book> getBookByISBN(long ISBN) {
         return bookDAO.getBookByISBNLive(ISBN);
     }
 
-    public LiveData<List<Book>> getBooks() {
+    LiveData<List<Book>> getBooks() {
         return books;
     }
 }

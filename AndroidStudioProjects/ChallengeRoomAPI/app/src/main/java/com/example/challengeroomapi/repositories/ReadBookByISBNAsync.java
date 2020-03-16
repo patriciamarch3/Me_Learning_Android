@@ -3,9 +3,9 @@ package com.example.challengeroomapi.repositories;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.challengeroomapi.room.AppDatabase;
 import com.example.challengeroomapi.room.Book;
 import com.example.challengeroomapi.room.BookDAO;
-import com.example.challengeroomapi.room.ConnectionToDB;
 
 public class ReadBookByISBNAsync extends AsyncTask<Long, Void, Book> {
     private AsyncTaskCallback<Book> callback;
@@ -15,7 +15,7 @@ public class ReadBookByISBNAsync extends AsyncTask<Long, Void, Book> {
     public ReadBookByISBNAsync(Context context, AsyncTaskCallback<Book> callback) {
         this.callback = callback;
         exception = null;
-        bookDAO = ConnectionToDB.getInstance(context).getDatabase().getBookDAO();
+        bookDAO = AppDatabase.getInstance(context).getBookDAO();
     }
 
     @Override

@@ -3,9 +3,9 @@ package com.example.challengeroomapi.repositories;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.challengeroomapi.room.AppDatabase;
 import com.example.challengeroomapi.room.Book;
 import com.example.challengeroomapi.room.BookDAO;
-import com.example.challengeroomapi.room.ConnectionToDB;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class ReadAllBooksAsync extends AsyncTask<Void, Void, List<Book>> {
     public ReadAllBooksAsync(Context context, AsyncTaskCallback<List<Book>> callback) {
         this.callback = callback;
         exception = null;
-        bookDAO = ConnectionToDB.getInstance(context).getDatabase().getBookDAO();
+        bookDAO = AppDatabase.getInstance(context).getBookDAO();
     }
 
     @Override
