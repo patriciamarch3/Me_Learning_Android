@@ -16,22 +16,10 @@ public class Book {
     @ColumnInfo
     private String author;
 
-    @Ignore
-    public Book() {
-        super();
-    }
-
     public Book(long ISBN, String title, String author) {
         this.ISBN = ISBN;
         this.title = title;
         this.author = author;
-    }
-
-    @Ignore
-    public Book(Book book) {
-        ISBN = book.getISBN();
-        title = book.getTitle();
-        author = book.getAuthor();
     }
 
     public long getISBN() {

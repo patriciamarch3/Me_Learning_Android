@@ -1,50 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".activities.DetailActivity">
-
-    <ImageView
-        android:id="@+id/ivBook"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        app:srcCompat="@drawable/book" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="delete"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:text="Edit"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-    </LinearLayout>
+    tools:context=".activities.AddBookFrag">
 
     <EditText
         android:id="@+id/etISBN"
@@ -55,6 +15,7 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:gravity="center_horizontal"
+        android:hint="enter ISBN of the book"
         android:inputType="textPersonName" />
 
     <EditText
@@ -66,6 +27,7 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:gravity="center_horizontal"
+        android:hint="enter title of the book"
         android:inputType="textPersonName" />
 
     <EditText
@@ -77,17 +39,18 @@
         android:layout_marginRight="30dp"
         android:ems="10"
         android:gravity="center_horizontal"
+        android:hint="enter author of the book"
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/btnApply"
+        android:id="@+id/btnCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="30dp"
         android:background="@color/colorPrimary"
-        android:text="Apply Changes"
+        android:text="Create"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
 </LinearLayout>
