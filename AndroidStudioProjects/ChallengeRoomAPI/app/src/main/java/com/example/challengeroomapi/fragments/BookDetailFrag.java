@@ -1,4 +1,4 @@
-package com.example.challengeroomapi.activities;
+package com.example.challengeroomapi.fragments;
 
 
 import android.app.Activity;

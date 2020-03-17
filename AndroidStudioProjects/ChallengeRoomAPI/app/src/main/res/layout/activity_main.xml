@@ -10,14 +10,14 @@
 
     <fragment
         android:id="@+id/addBookFrag"
-        android:name="com.example.challengeroomapi.activities.AddBookFrag"
+        android:name="com.example.challengeroomapi.fragments.AddBookFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_add_book" />
 
     <fragment
         android:id="@+id/bookshelfFrag"
-        android:name="com.example.challengeroomapi.activities.BookshelfFrag"
+        android:name="com.example.challengeroomapi.fragments.BookshelfFrag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_bookshelf" />

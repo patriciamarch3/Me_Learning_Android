@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.challengeroomapi.R;
+import com.example.challengeroomapi.fragments.BookAdapter;
 
 public class MainActivity extends AppCompatActivity implements BookAdapter.ItemClicked {
     final int BOOK_DETAIL = 1;

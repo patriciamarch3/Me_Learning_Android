@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/addBookFrag"
-        android:name="com.example.challengeroomapi.activities.AddBookFrag"
+        android:name="com.example.challengeroomapi.fragments.AddBookFrag"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/bookshelfFrag"
-        android:name="com.example.challengeroomapi.activities.BookshelfFrag"
+        android:name="com.example.challengeroomapi.fragments.BookshelfFrag"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

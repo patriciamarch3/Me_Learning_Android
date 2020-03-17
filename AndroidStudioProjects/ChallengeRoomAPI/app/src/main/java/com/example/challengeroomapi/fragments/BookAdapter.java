@@ -1,4 +1,4 @@
-package com.example.challengeroomapi.activities;
+package com.example.challengeroomapi.fragments;
 
 import android.content.Context;
 import android.view.LayoutInflater;

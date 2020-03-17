@@ -10,7 +10,7 @@
 
     <fragment
         android:id="@+id/bookDetailFrag"
-        android:name="com.example.challengeroomapi.activities.BookDetailFrag"
+        android:name="com.example.challengeroomapi.fragments.BookDetailFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_book_detail" />
