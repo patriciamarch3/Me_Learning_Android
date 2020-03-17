@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -26,11 +27,15 @@ import java.util.Locale;
  */
 public class BookDetailFrag extends Fragment {
     private Book book;
+    private EditText etTitle, etAuthor;
+    private static final String EDIT_BUTTON_CLICKED = "edit_button_isclicked";
+    private static final String NEW_TITLE = "new_title";
+    private static final String NEW_AUTHOR = "new_author";
+    private boolean edit_button_clicked = false;
 
     public BookDetailFrag() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,8 +44,8 @@ public class BookDetailFrag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_book_detail, container, false);
 
         EditText etISBN = view.findViewById(R.id.etISBN);
-        EditText etTitle = view.findViewById(R.id.etTitle);
-        EditText etAuthor = view.findViewById(R.id.etAuthor);
+        etTitle = view.findViewById(R.id.etTitle);
+        etAuthor = view.findViewById(R.id.etAuthor);
         Button btnDelete = view.findViewById(R.id.btnDelete);
         Button btnEdit = view.findViewById(R.id.btnEdit);
         Button btnApply = view.findViewById(R.id.btnApply);
@@ -54,8 +59,21 @@ public class BookDetailFrag extends Fragment {
             booksViewModel.getBookByISBN(ISBN).observe(getViewLifecycleOwner(), (Book foundBook) -> {
                 if (foundBook != null) {
                     book = foundBook;
-                    etTitle.setText(book.getTitle());
-                    etAuthor.setText(book.getAuthor());
+                    if (savedInstanceState != null) {
+                        if (savedInstanceState.containsKey(EDIT_BUTTON_CLICKED)) {
+                            if (savedInstanceState.getBoolean(EDIT_BUTTON_CLICKED)) {
+                                edit_button_clicked = true;
+                                etTitle.setText(savedInstanceState.getString(NEW_TITLE));
+                                etAuthor.setText(savedInstanceState.getString(NEW_AUTHOR));
+                            } else {
+                                etTitle.setText(book.getTitle());
+                                etAuthor.setText(book.getAuthor());
+                            }
+                        }
+                    } else {
+                        etTitle.setText(book.getTitle());
+                        etAuthor.setText(book.getAuthor());
+                    }
                 }
             });
         } catch (Exception e) {
@@ -63,8 +81,23 @@ public class BookDetailFrag extends Fragment {
         }
 
         etISBN.setEnabled(false);
-        etTitle.setEnabled(false);
-        etAuthor.setEnabled(false);
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(EDIT_BUTTON_CLICKED)) {
+                if (savedInstanceState.getBoolean(EDIT_BUTTON_CLICKED)) {
+                    edit_button_clicked = true;
+                    etTitle.setEnabled(true);
+                    etAuthor.setEnabled(true);
+                    btnApply.setVisibility(View.VISIBLE);
+                } else {
+                    etTitle.setEnabled(false);
+                    etAuthor.setEnabled(false);
+                }
+            }
+        } else {
+            etTitle.setEnabled(false);
+            etAuthor.setEnabled(false);
+        }
 
         btnDelete.setOnClickListener((View v) -> {
             try{
@@ -76,12 +109,14 @@ public class BookDetailFrag extends Fragment {
         });
 
         btnEdit.setOnClickListener((View v) -> {
+            edit_button_clicked = true;
             etTitle.setEnabled(true);
             etAuthor.setEnabled(true);
             btnApply.setVisibility(View.VISIBLE);
         });
 
         btnApply.setOnClickListener((View v) -> {
+            edit_button_clicked = false;
             String newTitle = etTitle.getText().toString();
             String newAuthor = etAuthor.getText().toString();
             if (newTitle.isEmpty() || newAuthor.isEmpty()) {
@@ -99,6 +134,15 @@ public class BookDetailFrag extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBoolean(EDIT_BUTTON_CLICKED, edit_button_clicked);
+        outState.putString(NEW_TITLE, etTitle.getText().toString());
+        outState.putString(NEW_AUTHOR, etAuthor.getText().toString());
     }
 
     private void setReply(int resultCode, String message) {
