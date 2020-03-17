@@ -38,7 +38,6 @@ public class AddBookFrag extends Fragment {
         BooksViewModel viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
 
         btnCreate.setOnClickListener((View v) -> {
-            Toast.makeText(getActivity(), "Clicked!", Toast.LENGTH_SHORT).show();
             String ISBNString = etISBN.getText().toString();
             String title = etTitle.getText().toString();
             String author = etAuthor.getText().toString();
