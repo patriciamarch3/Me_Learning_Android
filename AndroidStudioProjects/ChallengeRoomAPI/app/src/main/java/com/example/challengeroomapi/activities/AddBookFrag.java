@@ -21,8 +21,6 @@ import com.example.challengeroomapi.room.Book;
  * A simple {@link Fragment} subclass.
  */
 public class AddBookFrag extends Fragment {
-    private EditText etISBN, etTitle, etAuthor;
-    private BooksViewModel viewModel;
 
     public AddBookFrag() {
         // Required empty public constructor
@@ -33,11 +31,11 @@ public class AddBookFrag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_book, container, false);
-        etISBN = view.findViewById(R.id.etISBN);
-        etTitle = view.findViewById(R.id.etTitle);
-        etAuthor = view.findViewById(R.id.etAuthor);
+        EditText etISBN = view.findViewById(R.id.etISBN);
+        EditText etTitle = view.findViewById(R.id.etTitle);
+        EditText etAuthor = view.findViewById(R.id.etAuthor);
         Button btnCreate = view.findViewById(R.id.btnCreate);
-        viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
+        BooksViewModel viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
 
         btnCreate.setOnClickListener((View v) -> {
             Toast.makeText(getActivity(), "Clicked!", Toast.LENGTH_SHORT).show();

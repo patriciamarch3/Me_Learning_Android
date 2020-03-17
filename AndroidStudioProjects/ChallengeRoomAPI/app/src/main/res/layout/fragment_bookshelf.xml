@@ -6,6 +6,21 @@
     android:orientation="vertical"
     tools:context=".activities.BookshelfFrag">
 
+    <TextView
+        android:id="@+id/tvNoBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/design_default_color_error"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+        android:text="No book on the bookshelf"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bookshelf"
         android:layout_width="match_parent"
