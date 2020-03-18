@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.repositories.BooksViewModel;
 import com.example.challengeroomapi.room.Book;
+import com.example.challengeroomapi.uihelpers.TopToast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +44,8 @@ public class AddBookFrag extends Fragment {
             String author = etAuthor.getText().toString();
 
             if (ISBNString.isEmpty() || title.isEmpty() || author.isEmpty()) {
-                Toast.makeText(getActivity(), "Please fill ALL fields!", Toast.LENGTH_SHORT).show();
+                TopToast.create(getActivity(), "Please fill ALL fields!");
+//                Toast.makeText(getActivity(), "Please fill ALL fields!", Toast.LENGTH_SHORT).show();
             } else {
                 Book book = new Book(Long.parseLong(ISBNString), title, author);
                 try{
@@ -51,9 +53,11 @@ public class AddBookFrag extends Fragment {
                     etISBN.getText().clear();
                     etTitle.getText().clear();
                     etAuthor.getText().clear();
-                    Toast.makeText(getActivity(), book.toString() + " ADDED successfully!", Toast.LENGTH_SHORT).show();
+                    TopToast.create(getActivity(), book.toString() + " ADDED successfully!");
+//                    Toast.makeText(getActivity(), book.toString() + " ADDED successfully!", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "ERROR! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    TopToast.create(getActivity(), "ERROR! " + e.getMessage());
+//                    Toast.makeText(getActivity(), "ERROR! " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.fragments.BookAdapter;
+import com.example.challengeroomapi.uihelpers.TopToast;
 
 public class MainActivity extends AppCompatActivity implements BookAdapter.ItemClicked {
     final int BOOK_DETAIL = 1;
@@ -36,10 +37,12 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
         if (requestCode == BOOK_DETAIL) {
             if (resultCode != RESULT_OK) {
                 if (data != null) {
-                    Toast.makeText(MainActivity.this, data.getStringExtra("error"), Toast.LENGTH_SHORT).show();
+                    TopToast.create(MainActivity.this, data.getStringExtra("error"));
+//                    Toast.makeText(MainActivity.this, data.getStringExtra("error"), Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(MainActivity.this, data.getStringExtra("success"), Toast.LENGTH_SHORT).show();
+                TopToast.create(MainActivity.this, data.getStringExtra("success"));
+//                Toast.makeText(MainActivity.this, data.getStringExtra("success"), Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.repositories.BooksViewModel;
 import com.example.challengeroomapi.room.Book;
+import com.example.challengeroomapi.uihelpers.TopToast;
 
 import java.util.Locale;
 
@@ -77,7 +78,8 @@ public class BookDetailFrag extends Fragment {
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "ERROR! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            TopToast.create(getActivity(), "ERROR! " + e.getMessage());
+//            Toast.makeText(getActivity(), "ERROR! " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         etISBN.setEnabled(false);
@@ -120,7 +122,8 @@ public class BookDetailFrag extends Fragment {
             String newTitle = etTitle.getText().toString();
             String newAuthor = etAuthor.getText().toString();
             if (newTitle.isEmpty() || newAuthor.isEmpty()) {
-                Toast.makeText(getActivity(), "Please enter ALL fields!", Toast.LENGTH_SHORT).show();
+                TopToast.create(getActivity(), "Please enter ALL fields!");
+//                Toast.makeText(getActivity(), "Please enter ALL fields!", Toast.LENGTH_SHORT).show();
             } else {
                 book.setTitle(newTitle.trim());
                 book.setAuthor(newAuthor.trim());
