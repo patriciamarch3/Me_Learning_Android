@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.fragments.BookAdapter;
@@ -38,11 +37,9 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
             if (resultCode != RESULT_OK) {
                 if (data != null) {
                     TopToast.create(MainActivity.this, data.getStringExtra("error"));
-//                    Toast.makeText(MainActivity.this, data.getStringExtra("error"), Toast.LENGTH_SHORT).show();
                 }
             } else {
                 TopToast.create(MainActivity.this, data.getStringExtra("success"));
-//                Toast.makeText(MainActivity.this, data.getStringExtra("success"), Toast.LENGTH_SHORT).show();
             }
         }
     }

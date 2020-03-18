@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.repositories.BooksViewModel;
@@ -79,7 +78,6 @@ public class BookDetailFrag extends Fragment {
             });
         } catch (Exception e) {
             TopToast.create(getActivity(), "ERROR! " + e.getMessage());
-//            Toast.makeText(getActivity(), "ERROR! " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         etISBN.setEnabled(false);
@@ -118,12 +116,10 @@ public class BookDetailFrag extends Fragment {
         });
 
         btnApply.setOnClickListener((View v) -> {
-            edit_button_clicked = false;
             String newTitle = etTitle.getText().toString();
             String newAuthor = etAuthor.getText().toString();
             if (newTitle.isEmpty() || newAuthor.isEmpty()) {
                 TopToast.create(getActivity(), "Please enter ALL fields!");
-//                Toast.makeText(getActivity(), "Please enter ALL fields!", Toast.LENGTH_SHORT).show();
             } else {
                 book.setTitle(newTitle.trim());
                 book.setAuthor(newAuthor.trim());

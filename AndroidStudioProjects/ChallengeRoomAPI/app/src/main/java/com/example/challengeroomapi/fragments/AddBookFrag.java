@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.repositories.BooksViewModel;
@@ -45,7 +44,6 @@ public class AddBookFrag extends Fragment {
 
             if (ISBNString.isEmpty() || title.isEmpty() || author.isEmpty()) {
                 TopToast.create(getActivity(), "Please fill ALL fields!");
-//                Toast.makeText(getActivity(), "Please fill ALL fields!", Toast.LENGTH_SHORT).show();
             } else {
                 Book book = new Book(Long.parseLong(ISBNString), title, author);
                 try{
@@ -54,10 +52,8 @@ public class AddBookFrag extends Fragment {
                     etTitle.getText().clear();
                     etAuthor.getText().clear();
                     TopToast.create(getActivity(), book.toString() + " ADDED successfully!");
-//                    Toast.makeText(getActivity(), book.toString() + " ADDED successfully!", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     TopToast.create(getActivity(), "ERROR! " + e.getMessage());
-//                    Toast.makeText(getActivity(), "ERROR! " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
