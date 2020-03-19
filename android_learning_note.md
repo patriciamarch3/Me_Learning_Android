@@ -25,6 +25,18 @@
     + Needs key store.
     + Once the key store is lost, the app can no longer be updated in the App Store or for those who have downloaded it.
 
+### Pass Data from Activity to Fragment
+- Option 1: Use bundle
+    + If fragment has been added to the activity using xml, see this [example](https://stackoverflow.com/a/58744321/13069590).
+    + If fragment would be added to the activity using code (xml only contains fragment placeholder), see this [example](https://developer.android.com/training/basics/fragments/communicating#Deliver).
+- Option 2: Use ViewModel
+Same as **[Communicate between Fragments](#communicate-between-fragments)**, or see this [example](https://stackoverflow.com/a/52458700/13069590).
+
+### [Pass Data from Fragment to Activity](https://developer.android.com/training/basics/fragments/communicating#DefineInterface)
+
+### [Communicate between Fragments](https://developer.android.com/topic/libraries/architecture/viewmodel#sharing)
+
+
 ## Android Basics:
 ### Intent
 A bundle of information of interest to the receiving component (such as the actions to be taken and the data to act on) and to the Android system (such as the category of the components that should handle the intent and the instructions on how to launch the target activities).
@@ -42,5 +54,3 @@ A behavior or a portion of user interface in an activity.
 - A module section of activity that has its own lifecycle and is reusable.
 - If the activity get destroyed or paused, so will all the fragments it hosts.
 - Two fragments can communicate with each other only through the activity that is hosting them.
-
-

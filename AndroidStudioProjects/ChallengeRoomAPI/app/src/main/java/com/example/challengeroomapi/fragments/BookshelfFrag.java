@@ -49,10 +49,10 @@ public class BookshelfFrag extends Fragment {
         bookshelf.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
         BookAdapter adapter = new BookAdapter(getActivity());
-        BooksViewModel viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
-        viewModel.getBooks().observe(getActivity(), (List<Book> booklist) -> {
-            adapter.setBooks(booklist);
-            if (booklist.size() == 0) {
+        BooksViewModel booksViewModel = new ViewModelProvider(requireActivity()).get(BooksViewModel.class);
+        booksViewModel.getBooks().observe(getViewLifecycleOwner(), (List<Book> bookList) -> {
+            adapter.setBooks(bookList);
+            if (bookList.size() == 0) {
                 tvNoBook.setVisibility(View.VISIBLE);
             } else {
                 tvNoBook.setVisibility(View.GONE);

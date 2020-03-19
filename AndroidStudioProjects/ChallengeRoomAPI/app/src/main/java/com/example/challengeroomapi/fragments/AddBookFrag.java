@@ -35,7 +35,7 @@ public class AddBookFrag extends Fragment {
         EditText etTitle = view.findViewById(R.id.etTitle);
         EditText etAuthor = view.findViewById(R.id.etAuthor);
         Button btnCreate = view.findViewById(R.id.btnCreate);
-        BooksViewModel viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
+        BooksViewModel booksViewModel = new ViewModelProvider(requireActivity()).get(BooksViewModel.class);
 
         btnCreate.setOnClickListener((View v) -> {
             String ISBNString = etISBN.getText().toString().trim();
@@ -47,7 +47,7 @@ public class AddBookFrag extends Fragment {
             } else {
                 Book book = new Book(Long.parseLong(ISBNString), title, author);
                 try{
-                    viewModel.insert(book);
+                    booksViewModel.insert(book);
                     etISBN.getText().clear();
                     etTitle.getText().clear();
                     etAuthor.getText().clear();

@@ -5,20 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".activities.DetailActivity">
 
     <fragment
         android:id="@+id/detailBottunFrag"
         android:name="com.example.challengeroomapi.fragments.DetailButtonFrag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         tools:layout="@layout/fragment_detail_button" />
 
     <fragment
         android:id="@+id/detailContentFrag"
         android:name="com.example.challengeroomapi.fragments.DetailContentFrag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         tools:layout="@layout/fragment_detail_content" />
 </LinearLayout>
