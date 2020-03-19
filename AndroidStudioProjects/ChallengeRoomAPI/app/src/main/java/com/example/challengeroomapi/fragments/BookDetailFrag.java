@@ -116,13 +116,13 @@ public class BookDetailFrag extends Fragment {
         });
 
         btnApply.setOnClickListener((View v) -> {
-            String newTitle = etTitle.getText().toString();
-            String newAuthor = etAuthor.getText().toString();
+            String newTitle = etTitle.getText().toString().trim();
+            String newAuthor = etAuthor.getText().toString().trim();
             if (newTitle.isEmpty() || newAuthor.isEmpty()) {
                 TopToast.create(getActivity(), "Please enter ALL fields!");
             } else {
-                book.setTitle(newTitle.trim());
-                book.setAuthor(newAuthor.trim());
+                book.setTitle(newTitle);
+                book.setAuthor(newAuthor);
                 try{
                     booksViewModel.update(book);
                     setReply(Activity.RESULT_OK, book.toString() + " UPDATED");

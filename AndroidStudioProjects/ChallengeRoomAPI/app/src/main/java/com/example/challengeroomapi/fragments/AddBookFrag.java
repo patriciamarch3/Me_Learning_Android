@@ -38,9 +38,9 @@ public class AddBookFrag extends Fragment {
         BooksViewModel viewModel = new ViewModelProvider(this).get(BooksViewModel.class);
 
         btnCreate.setOnClickListener((View v) -> {
-            String ISBNString = etISBN.getText().toString();
-            String title = etTitle.getText().toString();
-            String author = etAuthor.getText().toString();
+            String ISBNString = etISBN.getText().toString().trim();
+            String title = etTitle.getText().toString().trim();
+            String author = etAuthor.getText().toString().trim();
 
             if (ISBNString.isEmpty() || title.isEmpty() || author.isEmpty()) {
                 TopToast.create(getActivity(), "Please fill ALL fields!");
