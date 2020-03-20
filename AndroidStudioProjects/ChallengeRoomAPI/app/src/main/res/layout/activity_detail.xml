@@ -20,5 +20,5 @@
         android:name="com.example.challengeroomapi.fragments.DetailContentFrag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_detail_content" />
+        tools:layout="@layout/fragment_add_book" />
 </LinearLayout>

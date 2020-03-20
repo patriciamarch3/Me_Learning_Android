@@ -17,8 +17,12 @@ import android.widget.EditText;
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.repositories.BooksViewModel;
 import com.example.challengeroomapi.room.Book;
+import com.example.challengeroomapi.uihelpers.ValidationTextWatcher;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Locale;
+
+import static com.example.challengeroomapi.uihelpers.ValidationTextWatcher.validateEditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +34,7 @@ public class DetailContentFrag extends Fragment {
     private static final String NEW_AUTHOR = "new_author";
     private boolean edit_button_clicked = false;
     private EditText etTitle, etAuthor;
+    private TextInputLayout tilTitle, tilAuthor;
 
     public DetailContentFrag() {
         // Required empty public constructor
@@ -39,12 +44,28 @@ public class DetailContentFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_detail_content, container, false);
+//        View view = inflater.inflate(R.layout.fragment_detail_content, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_book, container, false);
 
         EditText etISBN = view.findViewById(R.id.etISBN);
         etTitle = view.findViewById(R.id.etTitle);
+        tilTitle = view.findViewById(R.id.tilTitle);
         etAuthor = view.findViewById(R.id.etAuthor);
-        Button btnApply = view.findViewById(R.id.btnApply);
+        tilAuthor = view.findViewById(R.id.tilAuthor);
+//        Button btnApply = view.findViewById(R.id.btnApply);
+        Button btnApply = view.findViewById(R.id.btnCreate);
+        btnApply.setText("Apply Changes");
+
+        etTitle.setOnFocusChangeListener((View v, boolean hasFocus) -> {
+            if (!hasFocus) {
+                validateEditText(etTitle, tilTitle);
+            }
+        });
+        etAuthor.setOnFocusChangeListener((View v, boolean hasFocus) -> {
+            if (!hasFocus) {
+                validateEditText(etAuthor, tilAuthor);
+            }
+        });
 
         BooksViewModel booksViewModel = new ViewModelProvider(requireActivity()).get(BooksViewModel.class);
         booksViewModel.getBookForDetail().observe(getViewLifecycleOwner(), (Book book) -> {
@@ -115,5 +136,15 @@ public class DetailContentFrag extends Fragment {
         outState.putBoolean(EDIT_BUTTON_CLICKED, edit_button_clicked);
         outState.putString(NEW_TITLE, etTitle.getText().toString());
         outState.putString(NEW_AUTHOR, etAuthor.getText().toString());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // add textChangedListener in onResume() rather than onCreateView()
+        // to prevent it being triggered after orientation changes
+        etTitle.addTextChangedListener(new ValidationTextWatcher(etTitle, tilTitle));
+        etAuthor.addTextChangedListener(new ValidationTextWatcher(etAuthor, tilAuthor));
     }
 }

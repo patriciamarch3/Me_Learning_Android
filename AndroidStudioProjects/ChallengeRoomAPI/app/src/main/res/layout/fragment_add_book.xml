@@ -16,18 +16,18 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilISBN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
             app:hintTextAppearance="@style/FloatingHint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etISBN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:hint="enter ISBN of the book"
@@ -35,17 +35,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             app:hintTextAppearance="@style/FloatingHint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:hint="enter title of the book"
@@ -53,17 +53,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             app:hintTextAppearance="@style/FloatingHint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp"
                 android:ems="10"
                 android:gravity="center_horizontal"
                 android:hint="enter author of the book"
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="30dp"
             android:background="@color/colorPrimary"
             android:text="Create"
