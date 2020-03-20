@@ -38,6 +38,8 @@ public class AddBookFrag extends Fragment {
         BooksViewModel booksViewModel = new ViewModelProvider(requireActivity()).get(BooksViewModel.class);
 
         btnCreate.setOnClickListener((View v) -> {
+            view.requestFocus();
+
             String ISBNString = etISBN.getText().toString().trim();
             String title = etTitle.getText().toString().trim();
             String author = etAuthor.getText().toString().trim();

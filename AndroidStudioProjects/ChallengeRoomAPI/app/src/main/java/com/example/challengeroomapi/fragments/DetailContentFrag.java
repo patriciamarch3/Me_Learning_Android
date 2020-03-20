@@ -65,6 +65,7 @@ public class DetailContentFrag extends Fragment {
         });
 
         btnApply.setOnClickListener((View v) -> {
+            view.requestFocus();
             String newTitle = etTitle.getText().toString().trim();
             String newAuthor = etAuthor.getText().toString().trim();
             callback.onApplyClicked(newTitle, newAuthor);
