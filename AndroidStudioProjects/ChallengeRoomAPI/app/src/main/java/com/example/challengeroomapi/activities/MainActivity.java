@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
                     TopToast.create(MainActivity.this, data.getStringExtra("error"));
                 }
             } else {
-                TopToast.create(MainActivity.this, data.getStringExtra("success"));
+                if (data != null) {
+                    TopToast.create(MainActivity.this, data.getStringExtra("success"));
+                }
             }
         }
     }

@@ -46,9 +46,10 @@ public class DetailActivity extends AppCompatActivity implements OnActionListene
     }
 
     @Override
-    public void onApplyClicked(String newTitle, String newAuthor) {
+    public boolean onApplyClicked(String newTitle, String newAuthor) {
         if (newTitle.isEmpty() || newAuthor.isEmpty()) {
             TopToast.create(this, "Please enter ALL fields!");
+            return true;
         } else {
             book.setTitle(newTitle);
             book.setAuthor(newAuthor);
@@ -56,8 +57,10 @@ public class DetailActivity extends AppCompatActivity implements OnActionListene
                 booksViewModel.update(book);
                 booksViewModel.setEditClicked(false);
                 setReply(RESULT_OK, book.toString() + " UPDATED", false);
+                return false;
             } catch (Exception e) {
                 setReply(RESULT_CANCELED, e.getMessage());
+                return true;
             }
         }
     }
@@ -67,7 +70,6 @@ public class DetailActivity extends AppCompatActivity implements OnActionListene
     }
 
     private void setReply(int resultCode, String message, boolean finish) {
-        Intent replyIntent = new Intent();
         String key, value;
         if (resultCode == RESULT_OK) {
             key = "success";
@@ -76,10 +78,14 @@ public class DetailActivity extends AppCompatActivity implements OnActionListene
             key = "error";
             value = "ERROR! " + message;
         }
-        replyIntent.putExtra(key, value);
-        setResult(resultCode, replyIntent);
         if (finish) {
+            Intent replyIntent = new Intent();
+            replyIntent.putExtra(key, value);
+            setResult(resultCode, replyIntent);
             DetailActivity.this.finish();
+        } else {
+            TopToast.create(DetailActivity.this, value);
+            setResult(resultCode);
         }
     }
 }
