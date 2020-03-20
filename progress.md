@@ -17,6 +17,14 @@
 
 ## 2020/03/19
 ### TODO: ChallengeRoomAPI project
-- [ ] show floating hint
+- [x] show floating hint
+
+## 2020/03/20
+### TODO: ChallengeRoomAPI project
+- [x] show floating error
+- [x] use two fragments in detail activity for the ease of orientation change
+
+## 2020/03/21
+### TODO: ChallengeRoomAPI project
 - [ ] add setting (theme color)
 - [ ] try different language
