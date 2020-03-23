@@ -77,7 +77,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="30dp"
-            android:background="@color/colorPrimary"
+            android:background="?colorPrimary"
             android:text="Create"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
