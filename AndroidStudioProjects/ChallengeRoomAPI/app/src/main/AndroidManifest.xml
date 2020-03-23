@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/GreenTheme">
         <activity android:name=".activities.DetailActivity"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
         <activity android:name=".activities.MainActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>

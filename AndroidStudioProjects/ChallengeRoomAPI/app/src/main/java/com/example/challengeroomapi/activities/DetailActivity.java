@@ -1,5 +1,6 @@
 package com.example.challengeroomapi.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,6 +21,11 @@ public class DetailActivity extends AppCompatActivity implements OnActionListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Book");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         long ISBN = getIntent().getLongExtra("isbn", -1);
         booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
