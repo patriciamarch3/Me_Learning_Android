@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/GreenTheme">
+        <activity android:name=".activities.Settings">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
         <activity android:name=".activities.DetailActivity"
             android:windowSoftInputMode="stateHidden">
             <meta-data android:name="android.support.PARENT_ACTIVITY"

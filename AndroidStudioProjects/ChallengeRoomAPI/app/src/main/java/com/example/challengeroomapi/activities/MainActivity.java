@@ -16,6 +16,7 @@ import com.example.challengeroomapi.uihelpers.TopToast;
 
 public class MainActivity extends AppCompatActivity implements BookAdapter.ItemClicked {
     final int BOOK_DETAIL = 1;
+    final int SETTING = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,9 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
-                TopToast.create(this, "settings clicked!");
+                Intent settingsIntent = new Intent(this, Settings.class);
+                startActivityForResult(settingsIntent, SETTING);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

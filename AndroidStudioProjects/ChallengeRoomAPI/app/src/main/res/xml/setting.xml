@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Change the Theme">
+        <ListPreference
+            android:defaultValue="green"
+            android:entries="@array/themeColor"
+            android:entryValues="@array/themeColorValue"
+            android:key="themeColor"
+            android:summary="Choose a theme color to be used through the application"
+            android:title="Theme Color" />
+        <ListPreference
+            android:defaultValue="english"
+            android:entries="@array/language"
+            android:entryValues="@array/languageValue"
+            android:key="language"
+            android:summary="Choose a language to be used through the application"
+            android:title="Language" />
+    </PreferenceCategory>
+</PreferenceScreen>
