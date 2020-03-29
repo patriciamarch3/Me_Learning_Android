@@ -3,8 +3,10 @@ package com.example.challengeroomapi.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.challengeroomapi.R;
@@ -19,6 +21,22 @@ public class DetailActivity extends AppCompatActivity implements OnActionListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String themeColor = preferences.getString("themeColor", "green");
+        String language = preferences.getString("language", "english");
+        switch (themeColor) {
+            case "red":
+                setTheme(R.style.RedTheme);
+                break;
+
+            case "blue":
+                setTheme(R.style.BlueTheme);
+                break;
+
+            default:
+                setTheme(R.style.GreenTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 

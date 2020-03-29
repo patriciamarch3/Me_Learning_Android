@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,10 +18,26 @@ import com.example.challengeroomapi.uihelpers.TopToast;
 
 public class MainActivity extends AppCompatActivity implements BookAdapter.ItemClicked {
     final int BOOK_DETAIL = 1;
-    final int SETTING = 2;
+    final int CHANGE_SETTING = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String themeColor = preferences.getString("themeColor", "green");
+        String language = preferences.getString("language", "english");
+        switch (themeColor) {
+            case "red":
+                setTheme(R.style.RedTheme);
+                break;
+
+            case "blue":
+                setTheme(R.style.BlueTheme);
+                break;
+
+            default:
+                setTheme(R.style.GreenTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -41,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
         switch (item.getItemId()) {
             case R.id.settings:
                 Intent settingsIntent = new Intent(this, Settings.class);
-                startActivityForResult(settingsIntent, SETTING);
+                startActivityForResult(settingsIntent, CHANGE_SETTING);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -70,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements BookAdapter.ItemC
                 if (data != null) {
                     TopToast.create(MainActivity.this, data.getStringExtra("success"));
                 }
+            }
+        } else if (requestCode == CHANGE_SETTING) {
+            if (resultCode == RESULT_OK) {
+                this.recreate();
             }
         }
     }
