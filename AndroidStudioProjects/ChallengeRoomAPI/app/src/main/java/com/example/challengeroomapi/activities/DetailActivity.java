@@ -22,20 +22,7 @@ public class DetailActivity extends AppCompatActivity implements OnActionListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        String themeColor = preferences.getString("themeColor", "green");
-        String language = preferences.getString("language", "english");
-        switch (themeColor) {
-            case "red":
-                setTheme(R.style.RedTheme);
-                break;
-
-            case "blue":
-                setTheme(R.style.BlueTheme);
-                break;
-
-            default:
-                setTheme(R.style.GreenTheme);
-        }
+        PreferenceController.changeSettings(preferences,this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
