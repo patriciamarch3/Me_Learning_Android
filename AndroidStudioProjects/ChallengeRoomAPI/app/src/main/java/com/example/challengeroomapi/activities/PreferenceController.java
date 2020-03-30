@@ -14,17 +14,14 @@ class PreferenceController {
         switch (themeColor) {
             case "red":
                 activity.setTheme(R.style.RedTheme);
-                TopToast.create(activity, "change to red");
                 break;
 
             case "blue":
                 activity.setTheme(R.style.BlueTheme);
-                TopToast.create(activity, "change to blue");
                 break;
 
             default:
                 activity.setTheme(R.style.GreenTheme);
-                TopToast.create(activity, "change to green");
         }
     }
 }

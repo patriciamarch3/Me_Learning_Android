@@ -1,12 +1,9 @@
 package com.example.challengeroomapi.activities;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.challengeroomapi.R;
@@ -15,22 +12,20 @@ import com.example.challengeroomapi.repositories.BooksViewModel;
 import com.example.challengeroomapi.room.Book;
 import com.example.challengeroomapi.uihelpers.TopToast;
 
-public class DetailActivity extends AppCompatActivity implements OnActionListener {
+public class DetailActivity extends BaseActivity implements OnActionListener {
     private BooksViewModel booksViewModel;
     private Book book;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        PreferenceController.changeSettings(preferences,this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Edit Book");
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setTitle("Edit Book");
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         long ISBN = getIntent().getLongExtra("isbn", -1);
         booksViewModel = new ViewModelProvider(this).get(BooksViewModel.class);
