@@ -24,7 +24,14 @@
 - [x] show floating error
 - [x] use two fragments in detail activity for the ease of orientation change
 
-## 2020/03/21
+## 2020/03/21 ~ 2020/03/29
 ### TODO: ChallengeRoomAPI project
-- [ ] add setting (theme color)
+- [x] add setting (theme color)
+
+## 2020/03/30
+### TODO: ChallengeRoomAPI project
+- [x] place all strings into strings.xml
+
+## 2020/03/31
+### TODO: ChallengeRoomAPI project
 - [ ] try different language
