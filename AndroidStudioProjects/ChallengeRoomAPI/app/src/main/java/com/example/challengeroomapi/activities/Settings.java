@@ -31,7 +31,7 @@ public class Settings extends AppCompatActivity implements SharedPreferences.OnS
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Settings");
+            actionBar.setTitle(getString(R.string.title_settings_activity));
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 

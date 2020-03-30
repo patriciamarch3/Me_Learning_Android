@@ -48,15 +48,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.ViewHolder holder, int position) {
-        if (bookList != null) {
-            Book book = bookList.get(position);
-            holder.itemView.setTag(book);
-            holder.tvTitle.setText(book.getTitle());
-            holder.tvAuthor.setText(book.getAuthor());
-        } else {
-            holder.tvTitle.setText("No book");
-            holder.tvAuthor.setText("No book");
-        }
+        Book book = bookList.get(position);
+        holder.itemView.setTag(book);
+        holder.tvTitle.setText(book.getTitle());
+        holder.tvAuthor.setText(book.getAuthor());
     }
 
     @Override

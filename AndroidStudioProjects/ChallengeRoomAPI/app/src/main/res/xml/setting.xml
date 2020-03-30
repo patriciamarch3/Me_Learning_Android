@@ -7,14 +7,14 @@
             android:entries="@array/themeColor"
             android:entryValues="@array/themeColorValue"
             android:key="themeColor"
-            android:summary="Choose a theme color to be used through the application"
-            android:title="Theme Color" />
+            android:summary="@string/setting_theme_color_summary"
+            android:title="@string/setting_theme_color_title" />
         <ListPreference
             android:defaultValue="english"
             android:entries="@array/language"
             android:entryValues="@array/languageValue"
             android:key="language"
-            android:summary="Choose a language to be used through the application"
-            android:title="Language" />
+            android:summary="@string/setting_language_summary"
+            android:title="@string/setting_language_title" />
     </PreferenceCategory>
 </PreferenceScreen>

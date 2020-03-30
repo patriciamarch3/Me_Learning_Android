@@ -16,7 +16,7 @@
         android:background="@color/design_default_color_error"
         android:gravity="center_horizontal"
         android:padding="10dp"
-        android:text="No book on the bookshelf"
+        android:text="@string/warning_no_book"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold" />

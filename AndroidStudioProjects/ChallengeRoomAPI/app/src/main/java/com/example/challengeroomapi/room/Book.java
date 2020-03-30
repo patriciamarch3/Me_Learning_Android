@@ -45,10 +45,4 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "\"" + title + "\"" + " by " + author;
-    }
 }

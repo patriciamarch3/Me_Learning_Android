@@ -44,7 +44,6 @@ public class DetailContentFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        View view = inflater.inflate(R.layout.fragment_detail_content, container, false);
         View view = inflater.inflate(R.layout.fragment_add_book, container, false);
 
         EditText etISBN = view.findViewById(R.id.etISBN);
@@ -52,18 +51,17 @@ public class DetailContentFrag extends Fragment {
         tilTitle = view.findViewById(R.id.tilTitle);
         etAuthor = view.findViewById(R.id.etAuthor);
         tilAuthor = view.findViewById(R.id.tilAuthor);
-//        Button btnApply = view.findViewById(R.id.btnApply);
         Button btnApply = view.findViewById(R.id.btnCreate);
-        btnApply.setText("Apply Changes");
+        btnApply.setText(getString(R.string.button_apply_changes));
 
         etTitle.setOnFocusChangeListener((View v, boolean hasFocus) -> {
             if (!hasFocus) {
-                validateEditText(etTitle, tilTitle);
+                validateEditText(getContext(), etTitle, tilTitle);
             }
         });
         etAuthor.setOnFocusChangeListener((View v, boolean hasFocus) -> {
             if (!hasFocus) {
-                validateEditText(etAuthor, tilAuthor);
+                validateEditText(getContext(), etAuthor, tilAuthor);
             }
         });
 
@@ -144,7 +142,7 @@ public class DetailContentFrag extends Fragment {
 
         // add textChangedListener in onResume() rather than onCreateView()
         // to prevent it being triggered after orientation changes
-        etTitle.addTextChangedListener(new ValidationTextWatcher(etTitle, tilTitle));
-        etAuthor.addTextChangedListener(new ValidationTextWatcher(etAuthor, tilAuthor));
+        etTitle.addTextChangedListener(new ValidationTextWatcher(getContext(), etTitle, tilTitle));
+        etAuthor.addTextChangedListener(new ValidationTextWatcher(getContext(), etAuthor, tilAuthor));
     }
 }

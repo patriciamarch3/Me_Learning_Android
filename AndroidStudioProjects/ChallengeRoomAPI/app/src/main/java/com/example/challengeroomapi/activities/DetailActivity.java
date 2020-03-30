@@ -23,7 +23,7 @@ public class DetailActivity extends BaseActivity implements OnActionListener {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Edit Book");
+            actionBar.setTitle(getString(R.string.title_detail_activity));
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -37,7 +37,7 @@ public class DetailActivity extends BaseActivity implements OnActionListener {
                 }
             });
         } catch (Exception e) {
-            TopToast.create(this, "ERROR! " + e.getMessage());
+            TopToast.create(this, getString(R.string.message_error, e.getMessage()));
         }
     }
 
@@ -45,7 +45,7 @@ public class DetailActivity extends BaseActivity implements OnActionListener {
     public void onDeleteClicked() {
         try{
             booksViewModel.delete(book);
-            setReply(RESULT_OK, book.toString() + " DELETED");
+            setReply(RESULT_OK, getString(R.string.message_delete, bookTostring(book)));
         } catch (Exception e) {
             setReply(RESULT_CANCELED, e.getMessage());
         }
@@ -54,7 +54,7 @@ public class DetailActivity extends BaseActivity implements OnActionListener {
     @Override
     public boolean onApplyClicked(String newTitle, String newAuthor) {
         if (newTitle.isEmpty() || newAuthor.isEmpty()) {
-            TopToast.create(this, "Please enter ALL fields!");
+            TopToast.create(this, getString(R.string.message_enter_all_fields));
             return true;
         } else {
             book.setTitle(newTitle);
@@ -62,7 +62,7 @@ public class DetailActivity extends BaseActivity implements OnActionListener {
             try{
                 booksViewModel.update(book);
                 booksViewModel.setEditClicked(false);
-                setReply(RESULT_OK, book.toString() + " UPDATED", false);
+                setReply(RESULT_OK, getString(R.string.message_update, bookTostring(book)), false);
                 return false;
             } catch (Exception e) {
                 setReply(RESULT_CANCELED, e.getMessage());
@@ -79,10 +79,10 @@ public class DetailActivity extends BaseActivity implements OnActionListener {
         String key, value;
         if (resultCode == RESULT_OK) {
             key = "success";
-            value = message + " successfully!";
+            value = getString(R.string.message_success, message);
         } else {
             key = "error";
-            value = "ERROR! " + message;
+            value = getString(R.string.message_error, message);
         }
         if (finish) {
             Intent replyIntent = new Intent();

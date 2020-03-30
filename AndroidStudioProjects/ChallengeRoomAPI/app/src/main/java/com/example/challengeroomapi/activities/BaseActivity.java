@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.challengeroomapi.R;
+import com.example.challengeroomapi.room.Book;
 import com.example.challengeroomapi.uihelpers.TopToast;
 
 public class BaseActivity extends AppCompatActivity {
@@ -52,12 +53,16 @@ public class BaseActivity extends AppCompatActivity {
                     boolean settingChanged = data.getBooleanExtra("isChanged", false);
                     if (settingChanged) {
                         this.recreate();
-                        TopToast.create(this, "Settings changed successfully!");
+                        TopToast.create(this, getString(R.string.message_setting_change_success));
                     }
                 }
             } else {
-                TopToast.create(this, "Settings changed failed!");
+                TopToast.create(this, getString(R.string.message_setting_change_fail));
             }
         }
+    }
+
+    public String bookTostring(Book book) {
+        return getString(R.string.tostring_book, book.getTitle(), book.getAuthor());
     }
 }

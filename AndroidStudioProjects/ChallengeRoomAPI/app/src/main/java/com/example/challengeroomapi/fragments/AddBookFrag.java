@@ -1,8 +1,10 @@
 package com.example.challengeroomapi.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.challengeroomapi.R;
+import com.example.challengeroomapi.activities.BaseActivity;
 import com.example.challengeroomapi.repositories.BooksViewModel;
 import com.example.challengeroomapi.room.Book;
 import com.example.challengeroomapi.uihelpers.TopToast;
@@ -27,6 +30,7 @@ import static com.example.challengeroomapi.uihelpers.ValidationTextWatcher.valid
 public class AddBookFrag extends Fragment {
     private EditText etISBN, etTitle, etAuthor;
     private TextInputLayout tilISBN, tilTitle, tilAuthor;
+    private BaseActivity baseActivity;
 
     public AddBookFrag() {
         // Required empty public constructor
@@ -48,17 +52,17 @@ public class AddBookFrag extends Fragment {
 
         etISBN.setOnFocusChangeListener((View v, boolean hasFocus) -> {
             if (!hasFocus) {
-                validateEditText(etISBN, tilISBN);
+                validateEditText(getContext(), etISBN, tilISBN);
             }
         });
         etTitle.setOnFocusChangeListener((View v, boolean hasFocus) -> {
             if (!hasFocus) {
-                validateEditText(etTitle, tilTitle);
+                validateEditText(getContext(), etTitle, tilTitle);
             }
         });
         etAuthor.setOnFocusChangeListener((View v, boolean hasFocus) -> {
             if (!hasFocus) {
-                validateEditText(etAuthor, tilAuthor);
+                validateEditText(getContext(), etAuthor, tilAuthor);
             }
         });
 
@@ -70,7 +74,7 @@ public class AddBookFrag extends Fragment {
             String author = etAuthor.getText().toString().trim();
 
             if (ISBNString.isEmpty() || title.isEmpty() || author.isEmpty()) {
-                TopToast.create(getActivity(), "Please fill ALL fields!");
+                TopToast.create(getActivity(), getString(R.string.message_enter_all_fields));
             } else {
                 Book book = new Book(Long.parseLong(ISBNString), title, author);
                 try{
@@ -81,9 +85,10 @@ public class AddBookFrag extends Fragment {
                     tilTitle.setErrorEnabled(false);
                     etAuthor.getText().clear();
                     tilAuthor.setErrorEnabled(false);
-                    TopToast.create(getActivity(), book.toString() + " ADDED successfully!");
+                    String book_added = getString(R.string.message_add,baseActivity.bookTostring(book));
+                    TopToast.create(getActivity(),  getString(R.string.message_success, book_added));
                 } catch (Exception e) {
-                    TopToast.create(getActivity(), "ERROR! " + e.getMessage());
+                    TopToast.create(getActivity(), getString(R.string.message_error, e.getMessage()));
                 }
             }
         });
@@ -97,8 +102,22 @@ public class AddBookFrag extends Fragment {
 
         // add textChangedListener in onResume() rather than onCreateView()
         // to prevent it being triggered after orientation changes
-        etISBN.addTextChangedListener(new ValidationTextWatcher(etISBN, tilISBN));
-        etTitle.addTextChangedListener(new ValidationTextWatcher(etTitle, tilTitle));
-        etAuthor.addTextChangedListener(new ValidationTextWatcher(etAuthor, tilAuthor));
+        etISBN.addTextChangedListener(new ValidationTextWatcher(getContext(), etISBN, tilISBN));
+        etTitle.addTextChangedListener(new ValidationTextWatcher(getContext(), etTitle, tilTitle));
+        etAuthor.addTextChangedListener(new ValidationTextWatcher(getContext(), etAuthor, tilAuthor));
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        baseActivity = (BaseActivity) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        baseActivity = null;
     }
 }

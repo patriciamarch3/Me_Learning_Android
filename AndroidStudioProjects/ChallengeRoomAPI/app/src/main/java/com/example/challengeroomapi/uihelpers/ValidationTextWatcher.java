@@ -1,8 +1,8 @@
 package com.example.challengeroomapi.uihelpers;
 
+import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -10,10 +10,12 @@ import com.example.challengeroomapi.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ValidationTextWatcher implements TextWatcher {
+    private Context context;
     private View view;
     private TextInputLayout til;
 
-    public ValidationTextWatcher(View view, TextInputLayout til) {
+    public ValidationTextWatcher(Context context, View view, TextInputLayout til) {
+        this.context = context;
         this.view = view;
         this.til = til;
     }
@@ -30,24 +32,23 @@ public class ValidationTextWatcher implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        Log.d("text_error", "because of this");
-        validateEditText(view, til);
+        validateEditText(context, view, til);
     }
 
-    public static void validateEditText(View view, TextInputLayout til) {
+    public static void validateEditText(Context context, View view, TextInputLayout til) {
         EditText et = (EditText) view;
         if (et.getText().toString().trim().isEmpty()) {
             switch (view.getId()) {
                 case R.id.etISBN:
-                    til.setError("Missing ISBN");
+                    til.setError(context.getString(R.string.warning_no_isbn));
                     break;
 
                 case R.id.etTitle:
-                    til.setError("Missing Title");
+                    til.setError(context.getString(R.string.warning_no_title));
                     break;
 
                 case R.id.etAuthor:
-                    til.setError("Missing Author");
+                    til.setError(context.getString(R.string.warning_no_author));
                     break;
             }
         } else {

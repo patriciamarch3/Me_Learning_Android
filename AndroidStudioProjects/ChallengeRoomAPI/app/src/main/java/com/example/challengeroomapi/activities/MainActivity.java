@@ -20,7 +20,7 @@ public class MainActivity extends BaseActivity implements BookAdapter.ItemClicke
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle(" Book Database");
+            actionBar.setTitle(getString(R.string.title_main_activity));
             actionBar.setIcon(R.drawable.library);
             actionBar.setDisplayShowHomeEnabled(true);
         }
