@@ -1,27 +1,60 @@
 package com.example.challengeroomapi.activities;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
+import android.os.LocaleList;
 
 import com.example.challengeroomapi.R;
-import com.example.challengeroomapi.uihelpers.TopToast;
+
+import java.util.Locale;
 
 class PreferenceController {
 
-    static void changeSettings(SharedPreferences preferences, Activity activity) {
+    static Context changeSettings(SharedPreferences preferences, Context context) {
         String themeColor = preferences.getString("themeColor", "green");
-        String language = preferences.getString("language", "english");
-        switch (themeColor) {
+        changeColor(themeColor, context);
+
+        String language = preferences.getString("language", "en");
+        return changeLanguage(language, context);
+    }
+
+    private static void changeColor(String color, Context context) {
+        switch (color) {
             case "red":
-                activity.setTheme(R.style.RedTheme);
+                context.setTheme(R.style.RedTheme);
                 break;
 
             case "blue":
-                activity.setTheme(R.style.BlueTheme);
+                context.setTheme(R.style.BlueTheme);
                 break;
 
             default:
-                activity.setTheme(R.style.GreenTheme);
+                context.setTheme(R.style.GreenTheme);
         }
+    }
+
+    private static Context changeLanguage(String language, Context context) {
+        Resources res = context.getResources();
+        Locale locale = new Locale(language);
+        Configuration config = res.getConfiguration();
+
+        // version < 17
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            config.locale = locale;
+            res.updateConfiguration(config, res.getDisplayMetrics());
+        } else { // version >= 17
+            config.setLocale(locale);
+            // version >= 24
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                LocaleList localeList = new LocaleList(locale);
+                LocaleList.setDefault(localeList);
+                config.setLocales(localeList);
+            }
+            context = context.createConfigurationContext(config);
+        }
+        return context;
     }
 }

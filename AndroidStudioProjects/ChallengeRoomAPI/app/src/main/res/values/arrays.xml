@@ -19,8 +19,8 @@
     </string-array>
 
     <string-array name="languageValue">
-        <item>english</item>
-        <item>chineseSimplified</item>
-        <item>chineseTraditional</item>
+        <item>en</item>
+        <item>zh</item>
+        <item>zh-rTW</item>
     </string-array>
 </resources>

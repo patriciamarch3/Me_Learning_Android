@@ -2,19 +2,18 @@
 <resources>
     <string name="app_name">Challenge Room API</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hint_enter_isbn">Enter ISBN of the book</string>
-    <string name="hint_enter_title">Enter title of the book</string>
-    <string name="hint_enter_author">Enter author of the book</string>
+    <string name="hint_enter_isbn">请输入书的ISBN编号</string>
+    <string name="hint_enter_title">请输入书名</string>
+    <string name="hint_enter_author">请输入作者</string>
 
-    <string name="button_create">Create</string>
-    <string name="button_delete">Delete</string>
-    <string name="button_edit">Edit</string>
-    <string name="button_apply_changes">Apply Changes</string>
+    <string name="button_create">创建</string>
+    <string name="button_delete">删除</string>
+    <string name="button_edit">编辑</string>
+    <string name="button_apply_changes">应用更改</string>
 
-    <string name="setting_theme_color_title">Theme Color</string>
+    <string name="setting_theme_color_title">颜色</string>
     <string name="setting_theme_color_summary">Choose a theme color to be used through the application</string>
-    <string name="setting_language_title">Language</string>
+    <string name="setting_language_title">语言</string>
     <string name="setting_language_summary">Choose a language to be used through the application</string>
 
     <string name="setting_theme_color_1">Red</string>

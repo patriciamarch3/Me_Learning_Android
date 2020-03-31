@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Challenge Room API</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hint_enter_isbn">Enter ISBN of the book</string>
     <string name="hint_enter_title">Enter title of the book</string>
     <string name="hint_enter_author">Enter author of the book</string>

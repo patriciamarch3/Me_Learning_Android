@@ -10,7 +10,7 @@ import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.fragments.BookAdapter;
 import com.example.challengeroomapi.uihelpers.TopToast;
 
-public class MainActivity extends BaseActivity implements BookAdapter.ItemClicked {
+public class MainActivity extends MenuActivity implements BookAdapter.ItemClicked {
     private final int BOOK_DETAIL = 2;
 
     @Override

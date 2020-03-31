@@ -1,64 +1,46 @@
 package com.example.challengeroomapi.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.example.challengeroomapi.R;
 import com.example.challengeroomapi.room.Book;
-import com.example.challengeroomapi.uihelpers.TopToast;
 
-public class BaseActivity extends AppCompatActivity {
-    private final int CHANGE_SETTING = 1;
+public class BaseActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+    protected SharedPreferences preferences;
+    protected SharedPreferences.Editor editor;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        PreferenceController.changeSettings(preferences,this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        preferences.registerOnSharedPreferenceChangeListener(this);
+        PreferenceController.changeSettings(preferences, this);
+        editor = preferences.edit();
 
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected void attachBaseContext(Context newBase) {
+        preferences = PreferenceManager.getDefaultSharedPreferences(newBase);
+        Context context = PreferenceController.changeSettings(preferences, newBase);
+        super.attachBaseContext(new ContextWrapper(context));
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                Intent settingsIntent = new Intent(this, Settings.class);
-                startActivityForResult(settingsIntent, CHANGE_SETTING);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == CHANGE_SETTING) {
-            if (resultCode == RESULT_OK) {
-                if (data != null) {
-                    boolean settingChanged = data.getBooleanExtra("isChanged", false);
-                    if (settingChanged) {
-                        this.recreate();
-                        TopToast.create(this, getString(R.string.message_setting_change_success));
-                    }
-                }
-            } else {
-                TopToast.create(this, getString(R.string.message_setting_change_fail));
-            }
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        // try to add a preference in shared preference to show that the setting is changed
+        if (key.equals("themeColor") || key.equals("language")) {
+            editor.putBoolean("isChanged", true);
+            editor.apply();
+            this.recreate();
         }
     }
 

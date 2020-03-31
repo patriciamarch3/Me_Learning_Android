@@ -12,7 +12,7 @@ import com.example.challengeroomapi.repositories.BooksViewModel;
 import com.example.challengeroomapi.room.Book;
 import com.example.challengeroomapi.uihelpers.TopToast;
 
-public class DetailActivity extends BaseActivity implements OnActionListener {
+public class DetailActivity extends MenuActivity implements OnActionListener {
     private BooksViewModel booksViewModel;
     private Book book;
 

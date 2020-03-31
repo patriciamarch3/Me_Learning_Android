@@ -10,7 +10,7 @@
             android:summary="@string/setting_theme_color_summary"
             android:title="@string/setting_theme_color_title" />
         <ListPreference
-            android:defaultValue="english"
+            android:defaultValue="en"
             android:entries="@array/language"
             android:entryValues="@array/languageValue"
             android:key="language"
