@@ -2,49 +2,45 @@
 <resources>
     <string name="app_name">Challenge Room API</string>
 
-    <string name="hint_enter_isbn">Enter ISBN of the book</string>
-    <string name="hint_enter_title">Enter title of the book</string>
-    <string name="hint_enter_author">Enter author of the book</string>
+    <string name="hint_enter_isbn">請輸入書的ISBN編號</string>
+    <string name="hint_enter_title">請輸入書名</string>
+    <string name="hint_enter_author">請輸入作者</string>
 
-    <string name="button_create">Create</string>
-    <string name="button_delete">Delete</string>
-    <string name="button_edit">Edit</string>
-    <string name="button_apply_changes">Apply Changes</string>
+    <string name="button_create">創建</string>
+    <string name="button_delete">刪除</string>
+    <string name="button_edit">編輯</string>
+    <string name="button_apply_changes">應用更改</string>
 
-    <string name="setting_theme_color_title">Theme Color</string>
-    <string name="setting_theme_color_summary">Choose a theme color to be used through the application</string>
-    <string name="setting_language_title">Language</string>
-    <string name="setting_language_summary">Choose a language to be used through the application</string>
+    <string name="setting_theme_color_title">顏色</string>
+    <string name="setting_theme_color_summary">選擇一個將用於本應用程序的顏色</string>
+    <string name="setting_language_title">語言</string>
+    <string name="setting_language_summary">選擇一個將用於本應用程序的語言</string>
 
-    <string name="setting_theme_color_1">Red</string>
-    <string name="setting_theme_color_2">Green</string>
-    <string name="setting_theme_color_3">Blue</string>
+    <string name="setting_theme_color_1">紅</string>
+    <string name="setting_theme_color_2">綠</string>
+    <string name="setting_theme_color_3">藍</string>
 
-    <string name="setting_language_1">English</string>
-    <string name="setting_language_2">Chinese (Simplified)</string>
-    <string name="setting_language_3">Chinese (Traditional)</string>
+    <string name="message_setting_change_success">設置改變成功！</string>
+    <string name="message_setting_change_fail">設置改變失敗！</string>
+    <string name="message_enter_all_fields">請填寫所有空格！</string>
+    <string name="message_delete">%1$s已刪除</string>
+    <string name="message_update">%1$s已更新</string>
+    <string name="message_add">%1$s已添加</string>
+    <string name="message_success">%1$s成功！</string>
+    <string name="message_error">錯誤！%1$s</string>
 
-    <string name="message_setting_change_success">Settings changed successfully!</string>
-    <string name="message_setting_change_fail">Settings changed failed!</string>
-    <string name="message_enter_all_fields">Please enter ALL fields!</string>
-    <string name="message_delete">%1$s DELETED</string>
-    <string name="message_update">%1$s UPDATED</string>
-    <string name="message_add">%1$s ADDED</string>
-    <string name="message_success">%1$s successfully!</string>
-    <string name="message_error">ERROR! %1$s</string>
+    <string name="image_book">書</string>
+    <string name="image_settings">設置</string>
 
-    <string name="image_book">Book</string>
-    <string name="image_settings">Settings</string>
+    <string name="title_main_activity">\ 書庫</string>
+    <string name="title_detail_activity">編輯書本</string>
+    <string name="title_settings_activity">設置</string>
 
-    <string name="title_main_activity">\ Book Database</string>
-    <string name="title_detail_activity">Edit Book</string>
-    <string name="title_settings_activity">Settings</string>
+    <string name="warning_no_book">書庫內沒有書</string>
+    <string name="warning_no_isbn">ISBN編號未填寫</string>
+    <string name="warning_no_title">書名未填寫</string>
+    <string name="warning_no_author">作者未填寫</string>
 
-    <string name="warning_no_book">No book on the bookshelf</string>
-    <string name="warning_no_isbn">Missing ISBN</string>
-    <string name="warning_no_title">Missing Title</string>
-    <string name="warning_no_author">Missing Author</string>
-
-    <string name="tostring_book">\"%1$s\" by %2$s</string>
-    <string name="placeholder">Placeholder</string>
+    <string name="tostring_book">%2$s《%1$s》</string>
+    <string name="placeholder">佔位符</string>
 </resources>
