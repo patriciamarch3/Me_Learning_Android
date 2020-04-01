@@ -32,17 +32,23 @@ public class Settings extends BaseActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                boolean isChanged = preferences.getBoolean("isChanged", false);
-                Intent replyIntent = new Intent();
-                replyIntent.putExtra("isChanged", isChanged);
-                setResult(RESULT_OK, replyIntent);
-                this.finish();
-
-                editor.putBoolean("isChanged", false);
-                editor.apply();
+                safeFinishActivity(RESULT_OK);
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        safeFinishActivity(RESULT_BACK);
+    }
+
+    private void safeFinishActivity(int result_code) {
+        boolean isChanged = preferences.getBoolean("isChanged", false);
+        Intent replyIntent = new Intent();
+        replyIntent.putExtra("isChanged", isChanged);
+        setResult(result_code, replyIntent);
+        this.finish();
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {

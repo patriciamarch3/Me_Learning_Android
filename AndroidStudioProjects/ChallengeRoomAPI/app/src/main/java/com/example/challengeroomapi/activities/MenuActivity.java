@@ -41,17 +41,18 @@ public class MenuActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CHANGE_SETTING) {
-            if (resultCode == RESULT_OK) {
-                if (data != null) {
-                    boolean settingChanged = data.getBooleanExtra("isChanged", false);
-                    if (settingChanged) {
-                        this.recreate();
-                        TopToast.create(this, getString(R.string.message_setting_change_success));
-                    }
+            if (resultCode == RESULT_OK || resultCode == RESULT_BACK) {
+                boolean settingChanged = preferences.getBoolean("isChanged", false);
+                if (settingChanged) {
+                    this.recreate();
+                    TopToast.create(this, getString(R.string.message_setting_change_success));
                 }
             } else {
                 TopToast.create(this, getString(R.string.message_setting_change_fail));
             }
         }
+
+        editor.putBoolean("isChanged", false);
+        editor.apply();
     }
 }

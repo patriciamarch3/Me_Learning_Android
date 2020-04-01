@@ -15,6 +15,7 @@ import com.example.challengeroomapi.room.Book;
 public class BaseActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     protected SharedPreferences preferences;
     protected SharedPreferences.Editor editor;
+    protected static final int RESULT_BACK = 1; // result code for pressing Android back button
 
     @SuppressLint("CommitPrefEdits")
     @Override
