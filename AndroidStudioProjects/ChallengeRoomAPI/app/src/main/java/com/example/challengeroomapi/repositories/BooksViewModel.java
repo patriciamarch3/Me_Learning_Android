@@ -39,6 +39,10 @@ public class BooksViewModel extends AndroidViewModel {
         repository.delete(ISBN);
     }
 
+    public void deleteAll() throws Exception {
+        repository.deleteAll();
+    }
+
     public LiveData<Book> getBookByISBN(long ISBN) throws Exception {
         return repository.getBookByISBN(ISBN);
     }

@@ -58,6 +58,15 @@ class BookRepository {
         future.get();
     }
 
+    void deleteAll() throws Exception {
+        Callable task = () -> {
+            bookDAO.deleteAll();
+            return null;
+        };
+        Future future = AppDatabase.databaseExecutor.submit(task);
+        future.get();
+    }
+
     LiveData<Book> getBookByISBN(long ISBN) throws Exception {
         Callable<LiveData<Book>> task = () -> bookDAO.getBookByISBN(ISBN);
         Future<LiveData<Book>> future = AppDatabase.databaseExecutor.submit(task);

@@ -8,6 +8,7 @@
     <string name="hint_enter_author">Enter author of the book</string>
 
     <string name="button_create">Create</string>
+    <string name="button_delete_all">Delete All</string>
     <string name="button_delete">Delete</string>
     <string name="button_edit">Edit</string>
     <string name="button_apply_changes">Apply Changes</string>
@@ -28,6 +29,7 @@
     <string name="message_setting_change_success">Settings changed successfully!</string>
     <string name="message_setting_change_fail">Settings changed failed!</string>
     <string name="message_enter_all_fields">Please enter ALL fields!</string>
+    <string name="message_delete_all">Delete all books</string>
     <string name="message_delete">%1$s DELETED</string>
     <string name="message_update">%1$s UPDATED</string>
     <string name="message_add">%1$s ADDED</string>

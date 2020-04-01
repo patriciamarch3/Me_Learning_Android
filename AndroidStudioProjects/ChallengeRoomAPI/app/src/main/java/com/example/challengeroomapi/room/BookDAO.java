@@ -23,6 +23,9 @@ public interface BookDAO {
     @Query("DELETE FROM Book WHERE id = :ISBN")
     void delete(long ISBN);
 
+    @Query("DELETE FROM BOOK")
+    void deleteAll();
+
     @Query("SELECT * FROM Book WHERE id = :ISBN")
     LiveData<Book> getBookByISBN(long ISBN);
 

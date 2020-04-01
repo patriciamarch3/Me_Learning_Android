@@ -7,6 +7,7 @@
     <string name="hint_enter_author">请输入作者</string>
 
     <string name="button_create">创建</string>
+    <string name="button_delete_all">删除所有书籍</string>
     <string name="button_delete">删除</string>
     <string name="button_edit">编辑</string>
     <string name="button_apply_changes">应用更改</string>
@@ -23,6 +24,7 @@
     <string name="message_setting_change_success">设置改变成功！</string>
     <string name="message_setting_change_fail">设置改变失败！</string>
     <string name="message_enter_all_fields">请填写所有空格！</string>
+    <string name="message_delete_all">删除所有书籍</string>
     <string name="message_delete">%1$s已删除</string>
     <string name="message_update">%1$s已更新</string>
     <string name="message_add">%1$s已添加</string>

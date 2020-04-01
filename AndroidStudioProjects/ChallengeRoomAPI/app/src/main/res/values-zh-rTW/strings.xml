@@ -7,6 +7,7 @@
     <string name="hint_enter_author">請輸入作者</string>
 
     <string name="button_create">創建</string>
+    <string name="button_delete_all">刪除所有書籍</string>
     <string name="button_delete">刪除</string>
     <string name="button_edit">編輯</string>
     <string name="button_apply_changes">應用更改</string>
@@ -23,6 +24,7 @@
     <string name="message_setting_change_success">設置改變成功！</string>
     <string name="message_setting_change_fail">設置改變失敗！</string>
     <string name="message_enter_all_fields">請填寫所有空格！</string>
+    <string name="message_delete_all">刪除所有書籍</string>
     <string name="message_delete">%1$s已刪除</string>
     <string name="message_update">%1$s已更新</string>
     <string name="message_add">%1$s已添加</string>
