@@ -12,39 +12,35 @@
     <string name="button_apply_changes">应用更改</string>
 
     <string name="setting_theme_color_title">颜色</string>
-    <string name="setting_theme_color_summary">Choose a theme color to be used through the application</string>
+    <string name="setting_theme_color_summary">选择一个将用于本应用程序的颜色</string>
     <string name="setting_language_title">语言</string>
-    <string name="setting_language_summary">Choose a language to be used through the application</string>
+    <string name="setting_language_summary">选择一个将用于本应用程序的语言</string>
 
-    <string name="setting_theme_color_1">Red</string>
-    <string name="setting_theme_color_2">Green</string>
-    <string name="setting_theme_color_3">Blue</string>
+    <string name="setting_theme_color_1">红</string>
+    <string name="setting_theme_color_2">绿</string>
+    <string name="setting_theme_color_3">蓝</string>
 
-    <string name="setting_language_1">English</string>
-    <string name="setting_language_2">Chinese (Simplified)</string>
-    <string name="setting_language_3">Chinese (Traditional)</string>
+    <string name="message_setting_change_success">设置改变成功！</string>
+    <string name="message_setting_change_fail">设置改变失败！</string>
+    <string name="message_enter_all_fields">请填写所有空格！</string>
+    <string name="message_delete">%1$s已删除</string>
+    <string name="message_update">%1$s已更新</string>
+    <string name="message_add">%1$s已添加</string>
+    <string name="message_success">%1$s成功！</string>
+    <string name="message_error">错误！%1$s</string>
 
-    <string name="message_setting_change_success">Settings changed successfully!</string>
-    <string name="message_setting_change_fail">Settings changed failed!</string>
-    <string name="message_enter_all_fields">Please enter ALL fields!</string>
-    <string name="message_delete">%1$s DELETED</string>
-    <string name="message_update">%1$s UPDATED</string>
-    <string name="message_add">%1$s ADDED</string>
-    <string name="message_success">%1$s successfully!</string>
-    <string name="message_error">ERROR! %1$s</string>
+    <string name="image_book">书</string>
+    <string name="image_settings">设置</string>
 
-    <string name="image_book">Book</string>
-    <string name="image_settings">Settings</string>
+    <string name="title_main_activity">\ 书库</string>
+    <string name="title_detail_activity">编辑书本</string>
+    <string name="title_settings_activity">设置</string>
 
-    <string name="title_main_activity">\ Book Database</string>
-    <string name="title_detail_activity">Edit Book</string>
-    <string name="title_settings_activity">Settings</string>
+    <string name="warning_no_book">书库内没有书</string>
+    <string name="warning_no_isbn">ISBN编号未填写</string>
+    <string name="warning_no_title">书名未填写</string>
+    <string name="warning_no_author">作者未填写</string>
 
-    <string name="warning_no_book">No book on the bookshelf</string>
-    <string name="warning_no_isbn">Missing ISBN</string>
-    <string name="warning_no_title">Missing Title</string>
-    <string name="warning_no_author">Missing Author</string>
-
-    <string name="tostring_book">\"%1$s\" by %2$s</string>
-    <string name="placeholder">Placeholder</string>
+    <string name="tostring_book">%2$s《%1$s》</string>
+    <string name="placeholder">占位符</string>
 </resources>
