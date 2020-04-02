@@ -37,8 +37,21 @@ class PreferenceController {
     }
 
     private static Context changeLanguage(String language, Context context) {
+        Locale locale = null;
+        switch (language) {
+            case "zh":
+                locale = Locale.CHINESE;
+                break;
+
+            case "zh-rTW":
+                locale = Locale.TRADITIONAL_CHINESE;
+                break;
+
+            default:
+                locale = Locale.ENGLISH;
+        }
+
         Resources res = context.getResources();
-        Locale locale = new Locale(language);
         Configuration config = res.getConfiguration();
 
         // version < 17
