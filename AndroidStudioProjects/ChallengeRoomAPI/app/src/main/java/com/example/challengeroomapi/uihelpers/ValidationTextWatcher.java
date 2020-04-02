@@ -36,23 +36,25 @@ public class ValidationTextWatcher implements TextWatcher {
     }
 
     public static void validateEditText(Context context, View view, TextInputLayout til) {
-        EditText et = (EditText) view;
-        if (et.getText().toString().trim().isEmpty()) {
-            switch (view.getId()) {
-                case R.id.etISBN:
-                    til.setError(context.getString(R.string.warning_no_isbn));
-                    break;
+        if (context != null) {
+            EditText et = (EditText) view;
+            if (et.getText().toString().trim().isEmpty()) {
+                switch (view.getId()) {
+                    case R.id.etISBN:
+                        til.setError(context.getString(R.string.warning_no_isbn));
+                        break;
 
-                case R.id.etTitle:
-                    til.setError(context.getString(R.string.warning_no_title));
-                    break;
+                    case R.id.etTitle:
+                        til.setError(context.getString(R.string.warning_no_title));
+                        break;
 
-                case R.id.etAuthor:
-                    til.setError(context.getString(R.string.warning_no_author));
-                    break;
+                    case R.id.etAuthor:
+                        til.setError(context.getString(R.string.warning_no_author));
+                        break;
+                }
+            } else {
+                til.setErrorEnabled(false);
             }
-        } else {
-            til.setErrorEnabled(false);
         }
     }
 }
