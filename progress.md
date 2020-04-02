@@ -32,6 +32,14 @@
 ### TODO: ChallengeRoomAPI project
 - [x] place all strings into strings.xml
 
-## 2020/03/31
+## 2020/03/31 ~ 2020/04/01
 ### TODO: ChallengeRoomAPI project
-- [ ] try different language
+- [x] support simplified Chinese
+
+## 2020/04/02
+### TODO: ChallengeRoomAPI project
+- [x] support traditional Chinese
+
+## 2020/04/03
+### TODO: ChallengeRoomAPI project
+- [ ] continue learning android with web
