@@ -23,9 +23,11 @@ public class Settings extends BaseActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, new SettingsFragment())
+                    .commit();
+        }
     }
 
     @Override
