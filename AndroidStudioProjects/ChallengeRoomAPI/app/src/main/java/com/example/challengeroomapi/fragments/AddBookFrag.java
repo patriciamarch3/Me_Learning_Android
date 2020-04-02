@@ -28,8 +28,11 @@ import static com.example.challengeroomapi.uihelpers.ValidationTextWatcher.valid
  * A simple {@link Fragment} subclass.
  */
 public class AddBookFrag extends Fragment {
-    private EditText etISBN, etTitle, etAuthor;
+    View view;
+    EditText etISBN, etTitle, etAuthor;
     private TextInputLayout tilISBN, tilTitle, tilAuthor;
+    Button btnCreate;
+    BooksViewModel booksViewModel;
     private BaseActivity baseActivity;
 
     public AddBookFrag() {
@@ -40,15 +43,15 @@ public class AddBookFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_book, container, false);
+        view = inflater.inflate(R.layout.fragment_add_book, container, false);
         etISBN = view.findViewById(R.id.etISBN);
         tilISBN = view.findViewById(R.id.tilISBN);
         etTitle = view.findViewById(R.id.etTitle);
         tilTitle = view.findViewById(R.id.tilTitle);
         etAuthor = view.findViewById(R.id.etAuthor);
         tilAuthor = view.findViewById(R.id.tilAuthor);
-        Button btnCreate = view.findViewById(R.id.btnCreate);
-        BooksViewModel booksViewModel = new ViewModelProvider(requireActivity()).get(BooksViewModel.class);
+        btnCreate = view.findViewById(R.id.btnCreate);
+        booksViewModel = new ViewModelProvider(requireActivity()).get(BooksViewModel.class);
 
         etISBN.setOnFocusChangeListener((View v, boolean hasFocus) -> {
             if (!hasFocus) {
